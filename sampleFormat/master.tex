@@ -1,0 +1,23 @@
+\documentclass[12pt]{amsart}
+\usepackage{hyperref}
+\title{Updates of problems in CSP}
+\author{Various contributors}
+\date{\today}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand\contributor[2]{\textbf{#1}, \emph{#2}}
+
+\begin{document}
+%\maketitle
+
+\include{problem156} 
+\include{problem456} 
+
+\bibliographystyle{plain}
+\bibliography{problem456,csp} %bib file name equals the document title, without special characters. 
+%always include csp.bib, which contains the standard bibtex format of the book Combinatorial Stochastic Processes.
+
+\end{document}

@@ -1,4 +1,5 @@
-\documentclass[12pt]{amsart}
+\documentclass[a4paper,notitlepage]{report}
+\usepackage{amssymb, amsmath, amsthm,graphicx,verbatim}
 \usepackage{hyperref}
 \title{Updates of problems in CSP}
 \author{Various contributors}
@@ -6,15 +7,20 @@
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
 \newcommand\contributor[2]{\textbf{#1}, \emph{#2}}
 
 \begin{document}
 %\maketitle
 
-\include{problem156} 
-\include{problem456} 
+%\include{problem156} 
+%\include{problem456} 
+\include{problem543} 
 
 \bibliographystyle{plain}
 \bibliography{problem456,csp} %bib file name equals the document title, without special characters. 

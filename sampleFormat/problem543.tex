@@ -4,38 +4,32 @@
 
 \subsection{CSP background}
 To make this exposition self-contained, we recall some materials from CSP. 
-Let $x^\downarrow$ denote a sequence whose terms are non-increasing, that is, $x^\downarrow_1 \geq x^\downarrow_2 \geq \ldots$. Let $\mathcal{P}_1 = \{x = (x_1, x_2, \ldots), x_i \geq 0, \sum_ix_i = 1\}$ be the space of conservative mass partitions, $\mathcal{P}_1^\downarrow = \{x^\downarrow: x \in \mathcal{P}_1\}$ be the space of ordered, conservative mass partitions. Let $PD(0,1)$ denote the Poisson-Dirichlet(0,1), which is a random distribution on $\mathcal{P}^\downarrow_1$, whose sequence is obtained by ranking the jumps of a $gamma(1)$ subordinator.
+Let $x^\downarrow$ denote a sequence whose terms are non-increasing, that is, $x^\downarrow_1 \geq x^\downarrow_2 \geq \ldots$. Let $\mathcal{P}_{\cdot}$ stands for the set of partitions of $\cdot$. For instance, $\mathcal{P}_t = \{x = (x_1, x_2, \ldots), x_i \geq 0, \sum_ix_i = t\}$ are unordered partitions of the mass $t$, $\mathcal{P}_t^\downarrow = \{x^\downarrow: x \in \mathcal{P}_t\}$
+is its ordered version. If $t \in [0,1]$, one can imagine breaking a chalk of mass 1 into countable many pieces, and record their sizes in some order. As we break up the chalk, infinitestimally small dust particles fall out, and $1-t$ is the total mass lost to dust. Write $\mathcal{P}_{[0,1]} = \bigcup_{t \in [0,1]} \mathcal{P}_t$ for the set of all possible chalk-mass sequences. Let $\mathcal{P}_{\mathbb{N}}$ denote partitions of $\mathbb{N}$, $PD(0,1)$ denote the Poisson-Dirichlet(0,1), which is a random distribution on $\mathcal{P}^\downarrow_1$, whose sequence is obtained by ranking the jumps of a $gamma(1)$ subordinator.
 
-\subsubsection{Exchangeable mass partitions}
+For a mass partition $x \in \mathcal{P}_1$, generate a sequence $U = (U_1, U_2, \ldots)$ of i.i.d uniform[0,1] random variables. Couple $x$ and $U$ to form $((x_i,U_i), i \geq 1)$, then rank the $U$-coordinate in increasing order. This puts $x$ is an \emph{exchangeable random order}. In general, for a distribution $P$ on $\mathcal{P}^\downarrow_{[0,1]}$, say that $X$ is an exchangeable $P$-partition of $[0,1]$ if a realization of $X$ is obtained by first drawing a $X^\downarrow \in \mathcal{P}_{[0,1]}^\downarrow$ according to $P$, then arrange this sequence in an exchangeable random order using a sequence of uniforms $U$ independent of $X^\downarrow$. For convenience, we will use $P$ to denote an ordered random mass partition, as well as its distribution. Let $P_0 := 1-\sum_{i\geq 1} P_i$ denote the dust mass. 
 
-Suppose that $X$ is a a random variable taking values in $\mathcal{P}_1$, that is, a random mass partition. Say that $X$ is exchangeable if as a sequence of random variables $(X_1, X_2, \ldots)$, it is exchangeable (ie: the joint law is invariant under permutations). The law of an exchangeable random mass partition is defined by a probability distribution on $\mathcal{P}_1^\downarrow$. For example, if $X$ is an exchangeable $P$-partition of $[0,1]$, then a realization of $X$ is obtained by first drawing a mass partition $x^\downarrow \in \mathcal{P}_1^\downarrow$ according to distribution $P$, then arrange this sequence in an exchangeable random order. 
-
-\subsubsection{Exchangeable coagulation and bridges}
-Now we recall the coagulation operator for an exchangeable mass coalescent. Let $Q$ be a distribution on $\mathcal{P}^\downarrow_1$. Let $\Pi$ be a partition of $\mathbb{N}$ obtained by the Kingman's paintbox based on $Q$. For $s \in \mathcal{P}_{[0,1]}$, the coagulation of $s$ by $\Pi$ is the mass partition defined as
-\begin{equation}\label{eqn:coag}
-Coag(s,\Pi) = (s_0|\Pi_i| + \sum_{j \in \Pi_i}s_j, i = 1,2,\ldots)^\downarrow, 
-\end{equation}
-where $|\Pi_i|$ is the asymptotic frequency of the $i$-th block of $\Pi$, and $s_0 = 1-\sum_{j=1}^\infty s_j$. In other words, $\Pi$ specifies which blocks to merge, $s_0$ is the size of the dust component of $s$, and this dust mass is sprinkled proportionally in each block. 
-
-In what follows, for convenience, we define the unranked version of the $Coag$ operator
-\begin{equation}\label{eqn:coag.u}
-Coag^u(s,\Pi) = (s_0|\Pi_i| + \sum_{j \in \Pi_i}s_j, i = 1,2,\ldots). 
-\end{equation}
-Obviously if $\sigma$ is a permutation of $\mathbb{N}$, then
-$$ Coag^u(S,\sigma\cdot\Pi) = \sigma \cdot Coag^u(S,\Pi). $$
-One has the more subtle identity
-$$ Coag^u(S,\mbox{SBP of } \Pi) \stackrel{d}{=} \mbox{SBP of } Coag(S, \Pi), $$
-where SBP stands for size-biased permutation. In this formula, both the left and right hand side are random rearrangements of $Coag(S,\Pi)$. In the left hand side, bins with bigger mass with respect to $\Pi$ are more likely to be listed first. In the right hand side, bins with that contains bigger $S$-mass are more likely to be listed first. The point is that for an exchangeable mass partition $S$, in expectation, these masses are the same, hence the equality in distribution. 
-
-Let $S$ be an exchangeable $P$-partition. Clearly $Coag(S,\Pi)$ only depends on $P$ and $Q$. We call this the coagulation of $P$ by $Q$, denoted $Coag(P,Q)$, or $P(Q\mathsf{-Coag})$. One can state $Coag(S, \Pi)$ in terms of $P$ and $Q$ only. Let $U_i \sim U[0,1]$ be an i.i.d sequence of uniforms, independent of $S$. Consider the random measure which puts mass $S_i^\downarrow = P_i$ at location $U_i$, plus $S_0$ times the Lebesgue measure
+Let $X$ be an exchangeable $P$-partition of $[0,1]$. One can think of $X$ as a random measure as follows. Draw an ordered mass partition $P$.  For $U$ an i.i.d sequence of uniforms, independent of $P$, put mass $P_i$ at location $U_i$, plus $P_0$ times the Lebesgue measure
 \begin{equation}\label{eqn:bridge}
 b_P := \sum_iP_i \delta_{U_i} + (1-\sum_iP_i) \cdot \mbox{(Lebesgue-measure)}.
 \end{equation}
-Now let $X$ be an exchangeable $Q$-partition. View $X$ as an exchangeable interval partition of $[0,1]$. Group together all masses of $\tau$ whose corresponding $U_i$'s fall in the same interval, then rank this sequence. In other words, $Q$ specifies the sizes of the bins, and $P$ specifies the amount of mass to be sprinkled in each bin, with the dust distributed uniformly. 
+Equation (\ref{eqn:bridge}) defines a $P$-bridge. Bridges form a convenient language for exchangeable coalescents. One can compose bridges as functions. One can check that composition of bridges are also bridges. In particular, for distributions $P,Q$ on $\mathcal{P}^\downarrow_{[0,1]}$, there exists a distribution $R$ on $\mathcal{P}^\downarrow_{[0,1]}$ such that
+$$ b_R \stackrel{d}{=} b_P \circ b_Q. $$
+Call $R$ the coagulation of $P$ by $Q$, denoted $Coag(P,Q)$, or $P(Q\mathsf{-Coag})$. 
 
-Thinking about exchangeable mass partitions as random measures as in (\ref{eqn:bridge}) is quite beneficial. Equation (\ref{eqn:bridge}) defines a $P$-bridge. Similarly, one can define a $Q$-bridge. One can view a bridge as a function from $[0,1]$ to $[0,1]$. Compositions of a bridge is still a bridge. We have \cite[Lemma 5.18]{CSP}, \cite[Lemma XXX]{Bertoin}
-$$ b_P \circ b_Q = b_{Coag(P,Q)}. $$
-This description reveals a symmetry between $Coag(P,Q)$ and $Coag(Q,P)$. 
+The name suggests that masses in $P$ are merged according to $Q$. Indeed, here is a more general definition of coagulation. For $\pi \in \mathcal{P}_\mathbb{N}$, $s \in \mathcal{P}_{[0,1]}$, define the unordered coagulation of $s$ by $\Pi$ as the sequence
+\begin{equation}\label{eqn:coag.u}
+Coag(s,\pi) = (s_0|\pi_i| + \sum_{j \in \pi_i}s_j, i = 1,2,\ldots) \in \mathcal{P}_{[0,1]}.
+\end{equation}
+In other words, $\pi$ specifies which blocks to merge, $s_0$ is the size of the dust component of $s$, and this dust mass is sprinkled proportionally in each block. Note that the usual Coag operator in the literature is the ordered version $Coag^\downarrow(s,\pi) := (Coag(s,\pi))^\downarrow$. 
+
+Now, suppose $S$ is an exchangeable $P$-partition, and $\Pi$ an independent partition of $\mathbb{N}$ such that $|\Pi|^\downarrow$ is a $Q$-partition. View $|\Pi|$ as an interval partition of $[0,1]$. Then $Coag(S,\Pi)$ groups together all masses of $S$ whose corresponding $U_i$'s fall in the same interval. One can check that $Coag^\downarrow(S,\Pi) \stackrel{d}{=} Coag^\downarrow(P,Q)$ (\cite[Lemma 5.18]{MR2245368}, \cite{MR2253162}). In other words, $Q$ specifies the sizes of the bins, and $P$ specifies the amount of mass to be sprinkled in each bin, with the dust distributed uniformly.
+
+Finally, a word about ordered vs unordered Coag operator. Obviously if $\sigma$ is a permutation of $\mathbb{N}$, then
+$$ Coag(S,\sigma\cdot\Pi) = \sigma \cdot Coag(S,\Pi). $$
+One has the more subtle identity
+$$ Coag(S,\mbox{SBP of } \Pi) \stackrel{d}{=} \mbox{SBP of } Coag(S, \Pi) \stackrel{d}{=} \mbox{SBP of } Coag^\downarrow(S, \Pi), $$
+where SBP stands for size-biased permutation. In this formula, both the left and right hand side are random rearrangements of $Coag(S,\Pi)$. In the left hand side, bins with bigger mass with respect to $\Pi$ are more likely to be listed first. In the right hand side, bins with that contains bigger $S$-mass are more likely to be listed first. The point is that for an exchangeable mass partition $S$, in expectation, these masses are the same, hence the equality in distribution. 
 
 \subsection{The problem}%a self-contained description of the problem
 %Generalization of Theorem 5.21 to some other law $Q$. 
@@ -49,19 +43,19 @@ The $D$-partition derived from $x$ is the interval partition $x^D = (x^D_1, x^D_
 \end{itemize}
 Note that an interval of $x^D$ is obtained by joining a random number of the intervals of $x$. We ask: when is $x^D$ a coagulation of $x$?
 
-Now suppose $X$ is an exchangeable $P$-partition of $[0,1]$. Therem 5.21 spells out the law of $X^D$ as a function of $P$. 
+Now suppose $X$ is an exchangeable $P$-partition of $[0,1]$. Therem 5.21 in \cite{MR2245368} spells out the law of $X^D$ as a function of $P$. 
 
-\begin{theorem}[\cite{csp}, Theorem 5.21]\label{thm:5.21}
-Let $X$ be an exchangeable $P$-partition of $[0,1]$. Then $X^D$ is the size-biased permutation of a $R$-partition of $[0,1]$, where $R = Coag(P,PD(0,1))$. 
+\begin{theorem}[\cite{MR2245368}, Theorem 5.21]\label{thm:5.21}
+Let $X$ be an exchangeable $P$-partition of $[0,1]$. Then $X^D$ is the size-biased permutation of a $R$-partition of $[0,1]$, where $R = Coag^\downarrow(P,PD(0,1))$. 
 \end{theorem}
 
-This theorem supplies a nice description of the map $P \mapsto Coag(P,PD(0,1))$ operator in terms of the $D$-partition. The problem is: is there a similar description for the map $P \mapsto Coag(P,PD(\alpha,\theta))$? 
+This theorem supplies a nice description of the map $P \mapsto Coag^\downarrow(P,PD(0,1))$ operator in terms of the $D$-partition. The problem is: is there a similar description for the map $P \mapsto Coag^\downarrow(P,PD(\alpha,\theta))$? 
 
 \subsection{Literature review} %put a mini review of the problem: for example, motivations, current status, thoughts, ...  
 
-Here, $D$ stands for \emph{droite}. Creating coagulation by sampling, then `rounding' by taking the right-end point, is quite a natural operation when one considers partitions defined by excursions of a standard Brownian bridge. (TODO: review csp17). Theorem 5.21 came out of \cite{csp24}. (TODO: review csp24). 
-TODO: google search D-partitions (not found anything)
-TODO: search papers that cite the above references.
+Here, $D$ stands for \emph{droite}.
+The D-partition was first defined by Aldous and Pitman \cite{MR1293075}, when $P$ is the partition defined by excursions of a standard Brownian bridge. This is reviewed in \cite[\S 9]{MR2245368}, where the D-partition features in \cite[Theorem 9.6]{MR2245368}. Independent of this application, creating coagulation by sampling, then `rounding' by taking the right-end point, is quite a natural operation. 
+Theorem 5.21 is an extract from \cite[Theorem 23]{MR2276901}, where the authors consider various properties of $D$-partition derived from Brownian bridges, realize that the result hold for general exchangeable mass partition $P$. 
 
 \subsection{Thoughts} %thoughts, computations that you are willing to share
 
@@ -76,12 +70,12 @@ Let $F$ be a distribution on $[0,1]$. A $D$-partition with weight $F$ derived fr
 \end{definition}
 The usual $D$-partition corresponds to one with uniform weight. Now, we can translate the problem as:
 
-\textbf{Problem.} Let $X$ be an exchangeable $P$-partition of $[0,1]$. For what distributions $F$ is $(X^{D(F)}) \stackrel{d}{=} Coag^u(P, Q)$ for some $Q$? We require that neither $F$ nor $Q$ depend on $P$. 
+\textbf{Problem.} Let $X$ be an exchangeable $P$-partition of $[0,1]$. For what distributions $F$ is $(X^{D(F)}) \stackrel{d}{=} Coag(P, Q)$ for some $Q$? We require that neither $F$ nor $Q$ depend on $P$. 
 
 One such pair $(F,Q)$ is (uniform,$PD(0,1)$). The following result says that this is the only pair.
 
 \begin{theorem}\label{thm:543}
-Suppose $X^{D(F)} \stackrel{d}{=} Coag^u(P, Q)$ for some $Q$. Then $F$ must be the uniform distribution, in which case $Q = PD(0,1)$. 
+Suppose $X^{D(F)} \stackrel{d}{=} Coag(P, Q)$ for some $Q$. Then $F$ must be the uniform distribution, in which case $Q = PD(0,1)$. 
 \end{theorem}
 
 Since $F$ and $Q$ cannot depend on $P$, it is sufficient to prove this statement for fixed $P = p$. However, we will write $b_P$ with capital $P$, to remind us that there is randomness in the construction of the bridge.
@@ -100,16 +94,16 @@ where $V_1 \sim F$ is independent of $X$. %Furthermore, condition on $X^{D(F)}_1
 \end{lemma}
 
 \begin{example}
-Suppose $F = Uniform[0,1]$. By Bertoin and Le Gall \cite{bertoin44}, $b_P^{-1}(V_1)$ is uniform. For $Q = PD(0,1)$, its size-biased permutation $\tilde{Q}$ is the $GEM(0,1)$, which has the i.i.d uniform stick-breaking representation. In particular, 
-$$ (\mbox{SBP of } Coag(P,Q))_1 \stackrel{d}{=} Coag(P,\tilde{Q}))_1 \stackrel{d}{=} b_P(U_1), $$
+Suppose $F = Uniform[0,1]$. By Bertoin and Le Gall \cite{MR1990057}, $b_P^{-1}(V_1)$ is uniform. For $Q = PD(0,1)$, its size-biased permutation $\tilde{Q}$ is the $GEM(0,1)$, which has the i.i.d uniform stick-breaking representation. In particular, 
+$$ (\mbox{SBP of } Coag^\downarrow(P,Q))_1 \stackrel{d}{=} Coag^\downarrow(P,\tilde{Q}))_1 \stackrel{d}{=} b_P(U_1), $$
 where $U_1$ is uniform. So at least we have an equality in distribution
 $$ b_P(U_1) \stackrel{d}{=} b_P(b_P^{-1}(V_1)). $$
-In fact, Bertoin and Le Gall's lemma and the i.i.d uniform stick-breaking representation of $GEM(0,1)$ can be used recursively to prove~Theorem \ref{thm:5.21}.
+In fact, Bertoin and Le Gall's lemma and the i.i.d uniform stick-breaking representation of $GEM(0,1)$ can be used recursively to prove~Theorem \ref{thm:5.21}. This is different(?) from the combinatorial argument originally presented in \cite{MR2245368}.
 \end{example}
 
 \begin{proof}[Proof of Theorem \ref{thm:543}] 
-Suppose $X^{D(F)} \stackrel{d}{=} Coag^u(P, Q)$. Then the first term of the two sequences must have the same distribution
-$$X^{D(F)}_1 \stackrel{d}{=} b_P(b_P^{-1}(V_1)) \stackrel{d}{=} Coag^u(P, Q)_1 \stackrel{d}{=} b_P(Q_1).$$ 
+Suppose $X^{D(F)} \stackrel{d}{=} Coag(P, Q)$. Then the first term of the two sequences must have the same distribution
+$$X^{D(F)}_1 \stackrel{d}{=} b_P(b_P^{-1}(V_1)) \stackrel{d}{=} Coag(P, Q)_1 \stackrel{d}{=} b_P(Q_1).$$ 
 Thus one must have 
 $$b_P^{-1}(V_1) \stackrel{d}{=} Q_1,$$ 
 where $V_1 \sim F$, and $Q_1$ is some random variable with distribution $F_Q$, taking values in $[0,1]$. This equality must holds for all $P$. Now consider a simple distribution $P$ with $P^\downarrow = (s, 0, 0, \ldots)$, where $s \in (0,1)$. Then $b_P^{-1}(V_1)$ is a mixture of $s$ times the uniform distribution, plus $(1-s)$ times some other distribution. Thus, $F_Q(t)$ must have mass at least $s \cdot t$, and one can choose $s$ arbitrarily close to $1$. Thus, $F_Q$ must be the uniform distribution, in which case $F$, the distribution of $V_1$, must also be uniform. 
